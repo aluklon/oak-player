@@ -18,7 +18,7 @@ public:
     void run();
     void dispatch(EventLoop::Func&& func);
 
-    void asyncCallback();
+    void execFunctions();
 
     ev_async _asyncWatcher;
     struct ev_loop* _evLoop {nullptr};
@@ -27,14 +27,14 @@ public:
     std::queue<EventLoop::Func> _queue;
 };
 
-static void AsyncCallback(struct ev_loop*, ev_async* w, int) {
-    static_cast<EventLoop::Impl*>(w->data)->asyncCallback();
+static void Callback(struct ev_loop*, ev_async* w, int) {
+    static_cast<EventLoop::Impl*>(w->data)->execFunctions();
 }
 
 EventLoop::Impl::Impl() {
     _evLoop = ev_loop_new();
     _asyncWatcher.data = this;
-    ev_async_init(&_asyncWatcher, AsyncCallback);
+    ev_async_init(&_asyncWatcher, Callback);
     ev_async_start(_evLoop, &_asyncWatcher);
 }
 
@@ -55,7 +55,7 @@ void EventLoop::Impl::dispatch(Func&& func) {
     ev_async_send(_evLoop, &_asyncWatcher);
 }
 
-void EventLoop::Impl::asyncCallback() {
+void EventLoop::Impl::execFunctions() {
     while (true) {
         EventLoop::Func func;
         {
