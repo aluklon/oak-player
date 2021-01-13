@@ -8,7 +8,6 @@
 #include <ev.h>
 
 namespace oak {
-namespace common {
 
 class EventLoop::Impl {
 public:
@@ -86,5 +85,4 @@ void EventLoop::dispatch(Func&& func) {
     _impl->dispatch(std::move(func));
 }
 
-} // namespace common
 } // namespace oak

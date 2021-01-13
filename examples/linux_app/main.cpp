@@ -3,7 +3,7 @@
 #include "common/event_loop.h"
 
 int main() {
-    oak::common::EventLoop mainLoop;
+    oak::EventLoop mainLoop;
 
     oak::Player player;
     player.load("https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd");

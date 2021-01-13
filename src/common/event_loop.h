@@ -4,7 +4,6 @@
 #include <functional>
 
 namespace oak {
-namespace common {
 
 class EventLoop {
 public:
@@ -21,5 +20,4 @@ private:
     Impl* _impl {nullptr};
 };
 
-} // namespace common
 } // namespace oak
