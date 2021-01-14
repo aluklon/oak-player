@@ -17,7 +17,7 @@ public:
     void dispatch(Func&& func);
 
 private:
-    Impl* _impl {nullptr};
+    Impl* const _impl {nullptr};
 };
 
 } // namespace oak

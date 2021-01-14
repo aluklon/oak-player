@@ -3,6 +3,7 @@ set(_NAME oakplayer)
 set(_SOURCES
     player.cpp
     common/event_loop_libev.cpp
+    common/http/http_client_libcurl.cpp
 )
 
 add_library(${_NAME} ${_SOURCES})
