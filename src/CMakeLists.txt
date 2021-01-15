@@ -6,9 +6,12 @@ set(_SOURCES
     common/http/http_client_libcurl.cpp
 )
 
+find_package(Threads REQUIRED)
+
 add_library(${_NAME} ${_SOURCES})
 
 target_link_libraries(${_NAME}
+    ${CMAKE_THREAD_LIBS_INIT}
     ev
 )
 
