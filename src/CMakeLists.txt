@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.1)
+
 set(_NAME oakplayer)
 
 set(_SOURCES
@@ -9,6 +11,8 @@ set(_SOURCES
 find_package(Threads REQUIRED)
 
 add_library(${_NAME} ${_SOURCES})
+
+target_compile_features(${_NAME} PRIVATE cxx_std_11)
 
 target_link_libraries(${_NAME}
     ${CMAKE_THREAD_LIBS_INIT}

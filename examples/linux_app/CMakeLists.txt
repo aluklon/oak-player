@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(linux_app)
+set(_NAME linux_app)
 
-add_executable(linux_app main.cpp)
-target_link_libraries(linux_app oakplayer)
+project(${_NAME})
+
+add_executable(${_NAME} main.cpp)
+target_compile_features(${_NAME} PRIVATE cxx_std_11)
+target_link_libraries(${_NAME} oakplayer)
